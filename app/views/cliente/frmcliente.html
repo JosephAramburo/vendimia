@@ -1,0 +1,79 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">{{titulo}}</div>
+    <div class="panel-body">
+        <div class="col-sm-12">             
+            <form id="frmCliente" name="frmCliente" class="form-horizontal" role="form" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nombre:</label>
+                            <div class="col-sm-6 has-feedback" ng-class="cssInput(frmCliente.nombre)">
+                                <input type="text" autofocus="" id="nombre" name="nombre" placeholder="Nombre" class="form-control" ng-pattern="/^[a-zA-Z\s\. ñáéíóú ÑÁÉÍÓÚ]*$/" ng-minlength="3" ng-maxlength="50" required="" ng-enter="focusInput('apellidoPaterno')" ng-model="cliente.nombre">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmCliente.nombre)"></span>
+                                 <div ng-show="frmCliente.$submitted || frmCliente.nombre.$touched">
+	                                 <span class="error" ng-show="frmCliente.nombre.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmCliente.nombre.$error.maxlength">El logintud m&aacutexima es de 50 caracteres.</span>
+	                                 <span class="error" ng-show="frmCliente.nombre.$error.pattern">Formato Incorrecto.</span>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Apellido Paterno:</label>
+                            <div class="col-sm-6 has-feedback"  ng-class="cssInput(frmCliente.apellidoPaterno)">
+                                <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido paterno" class="form-control" ng-pattern="/^[a-zA-Z\s\. ñáéíóú ÑÁÉÍÓÚ]*$/" ng-minlength="3" ng-maxlength="50" required="" ng-enter="focusInput('apellidoMaterno')" ng-model="cliente.apellidoPaterno">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmCliente.apellidoPaterno)"></span>
+                                <div ng-show="frmCliente.$submitted || frmCliente.apellidoPaterno.$touched">
+	                                 <span class="error" ng-show="frmCliente.apellidoPaterno.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmCliente.apellidoPaterno.$error.maxlength">El logintud m&aacutexima es de 50 caracteres.</span>
+	                                 <span class="error" ng-show="frmCliente.apellidoPaterno.$error.pattern">Formato Incorrecto.</span>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Apellido Materno:</label>
+                            <div class="col-sm-6 has-feedback"  ng-class="cssInput(frmCliente.apellidoMaterno)">
+                                <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido materno" class="form-control" ng-pattern="/^[a-zA-Z\s\. ñáéíóú ÑÁÉÍÓÚ]*$/" ng-minlength="3" ng-maxlength="50" required="" ng-enter="focusInput('rfc')" ng-model="cliente.apellidoMaterno">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmCliente.apellidoMaterno)"></span>
+                                <div ng-show="frmCliente.$submitted || frmCliente.apellidoMaterno.$touched">
+	                                 <span class="error" ng-show="frmCliente.apellidoMaterno.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmCliente.apellidoMaterno.$error.maxlength">El logintud m&aacutexima es de 50 caracteres.</span>
+	                                 <span class="error" ng-show="frmCliente.apellidoMaterno.$error.pattern">Formato Incorrecto.</span>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">RFC:</label>
+                            <div class="col-sm-4 has-feedback"  ng-class="cssInput(frmCliente.rfc)">
+                                <input type="text" id="rfc" name="rfc" class="form-control upperCase" placeholder="RFC" ng-minlength="13" ng-maxlength="13" required="" ng-enter="focusInput('btnCliente')" ng-model="cliente.rfc">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmCliente.rfc)"></span>
+                                <div ng-show="frmCliente.$submitted || frmCliente.rfc.$touched">
+	                                 <span class="error" ng-show="frmCliente.rfc.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmCliente.rfc.$error.minlength">El logintud minima es de 13 caracteres.</span>
+	                                 <span class="error" ng-show="frmCliente.rfc.$error.maxlength">El logintud m&aacutexima es de 13 caracteres.</span>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-offset-9">
+                    <div class="form-group">
+                        <button type="button" id="btnCliente" name="btnCliente" class="btn btn-success" ng-click="guardar(frmCliente)" ng-enter="guardar(frmCliente)"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>                     
+                        <button type="button" class="btn btn-danger" ng-click="regresar()"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</button>                          
+                    </div> 
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>

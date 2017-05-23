@@ -1,0 +1,125 @@
+<div class="panel panel-primary">
+    <div class="panel-heading"><h4>{{titulo}}</h4></div>
+    <div class="panel-body">
+        <div class="col-sm-12">             
+           <form id="frmVenta" name="frmVenta" class="form-horizontal" novalidate role="form">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <h3><label for="buscarCliente" class="col-sm-2 label label-primary">Cliente:</label></h3>
+                            <div class="col-sm-6 has-feedback" ng-class="cssInput(frmVenta.buscarCliente)">
+                                <input type="text" autofocus id="buscarCliente" name="buscarCliente" placeholder="Buscar Cliente..." class="form-control"  uib-typeahead="cliente as cliente.nombreCompleto for cliente in clientes | filter:{nombreCompleto:$viewValue}" typeahead-template-url="customTemplate.html"  typeahead-show-hint="true" typeahead-min-length="0" typeahead-on-select="onSelectCliente($item, $model, $label)" ng-change="buscarCliente(frmVenta.buscarCliente)" ng-minlength="3" ng-maxlength="50" required ng-model="busquedas.clienteNombre">                                
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmVenta.buscarCliente)"></span>  
+                                <span class="form-control-feedback positionLoad" ng-show="busquedas.loadCliente">
+	                                <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+	                            </span>                        
+                            </div>
+
+                            <span ng-show="busquedas.selectCli"><strong>RFC: {{selectCliente.rfc}}</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr_azul">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <h3><label class="col-sm-2 label label-primary">Art&iacute;culo:</label></h3>
+                            <div class="col-sm-6">
+                                <input type="text" id="buscarArticulo" name="buscarArticulo" placeholder="Buscar Articulo..." class="form-control" autocomplete="off" ng-pattern="/^[a-zA-Z0-9\s\. ñáéíóú ÑÁÉÍÓÚ]*$/" uib-typeahead="articulo as articulo.descripcion for articulo in articulos | filter:{descripcion:$viewValue}" typeahead-template-url="customTemplate.html"  typeahead-show-hint="true" typeahead-min-length="0" typeahead-on-select="onSelectArticulo($item, $model, $label)" ng-change="buscarArticulo(frmVenta.buscarArticulo)" ng-minlength="3" ng-maxlength="100" required="" ng-model="busquedas.articuloNombre">                                
+                            </div>
+                            <span class="form-control-feedback" ng-show="busquedas.loadArticulo">
+                                <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                            </span>
+                            <span><button class="btn fondo_agregar" ng-click="agregar()"><span class="glyphicon glyphicon-plus blanco"></span></button></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <hr class="hr_gris">
+            <form id="frmCarrito" name="frmCarrito">
+            	<div class="table-responsive">
+	                <table class="table table-striped">
+	                    <tr>
+	                        <th>Descripci&oacute;n Articulo</th>
+	                        <th>Modelo</th> 
+	                        <th>Cantidad</th>
+	                        <th>Precio</th>
+	                        <th>Importe</th> 
+	                        <th></th> 
+	                    </tr>        
+	                    <tr ng-repeat="dato in datos">
+	                        <td> {{dato.descripcion}}</td>
+	                        <td> {{dato.modelo}}</td>
+	                        <td class="form-group col-sm-1 has-feedback " ng-class="cssInputCarrito(frmCarrito,{{$index}}, 'carritoCantidad')">
+	                            <input type="text" class="form-control" id="{{'carritoCantidad' + $index}}" name="{{'carritoCantidad' + $index}}" ng-pattern="/^[0-9]{1,10}$/" ng-change="cambiarValores(frmCarrito, {{$index}}, 'carritoCantidad')" ng-maxlength="4" required ng-model="dato.cantidad">                                                                                   
+	                        </td>
+	                        <td> {{dato.precio| currency}}</td>
+	                        <td> {{dato.importe| currency}}</td>
+	                        <td>                                
+	                            <button ng-disabled="!mostrarEliminar(frmCarrito,{{$index}}, 'carritoCantidad')" ng-click="eliminar($index)" class="btn btn-danger" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></button>
+	                        </td>
+	                    </tr> 
+	                </table>
+            	</div>
+                <div class="row">
+                    <div class="col-sm-5 col-sm-offset-7">
+                        <div class="form-group">
+                            <h4><label class="col-sm-4 label label-primary alinear_derecha">Enganche:</label></h4>
+                            <div class="col-sm-8" align="center">
+                                <strong>{{venta.enganche| currency}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-sm-offset-7">
+                        <div class="form-group">
+                            <h4><label class="col-sm-4 label label-primary">Bonificaci&oacute;n Enganche:</label></h4>
+                            <div class="col-sm-8" align="center">
+                                <strong>{{venta.bonificacion| currency}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-sm-offset-7">
+                        <div class="form-group">
+                            <h4><label class="col-sm-4 label label-primary alinear_derecha">Total:</label></h4>
+                            <div class="col-sm-8" align="center">
+                                <strong>{{venta.total| currency}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </form>
+            <div id="abonos" class="collapse">
+                <table class="table table-responsive">
+                    <tr class="bg-info">
+                        <th colspan="4" class="alinear_centro">ABONOS MENSUALES</th>
+                        <th></th> 
+                    </tr>        
+                    <tr ng-repeat="abono in abonos">
+                        <td>{{abono.mes}} ABONOS DE</td>
+                        <td>{{abono.abono | currency}}</td>
+                        <td>TOTAL DE PAGAR {{abono.totalPagar | currency}}</td>
+                        <td>SE AHORRA {{abono.ahorro| currency}}</td>
+                        <th><input type="radio" name="abonos" value="{{$index}}" ng-model="busquedas.selectAbono" /></th>
+                    </tr> 
+                </table>
+            </div>
+            <div class="col-sm-offset-9">
+                <div class="form-group">                                             
+                    <button ng-click="regresar()" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</button>
+                    <button type="button" ng-show="mostrarAbonos" class="btn btn-success" ng-click="mostrarAbonos(frmCarrito)"><span  class="glyphicon glyphicon-arrow-right"></span> Siguiente</button>
+                    <button type="button" ng-show="!mostrarAbonos" class="btn btn-success" ng-click="guardar()"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="customTemplate.html">
+    <a>
+    <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>

@@ -1,0 +1,47 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-2">
+                 <strong>{{titulo}}</strong>
+            </div>
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" autofocus placeholder="Buscar..." ng-enter="search()" ng-model="query.filter"><span class="input-group-btn"><button class="btn btn-info" type="button" ng-click="search()"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <a ng-href="#!/venta/nueva" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">       
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr class="info">
+                    <th>Folio Venta</th>
+                    <th>Clave Cliente</th>
+                    <th>Nombre</th>
+                    <th>Total</th> 
+                    <th>Fecha</th>
+                    <th>Estatus</th> 
+                </tr>
+                <tr ng-repeat="dato in datos">
+                    <td>{{dato.id}}</td>
+                    <td>{{dato.clienteId}}</td>
+                    <td>{{dato.nombre}} {{dato.apellidoPaterno}} {{dato.apellidoMaterno}}</td>
+                    <td>{{dato.total | currency}}</td>
+                    <td>{{dato.fecha | date : 'dd/MM/yyyy'}}</td>
+                    <td ng-if="dato.estatusId == '1'"><h4><span class="label label-success">{{dato.estatus}}</span></h4></td>
+                    <td ng-if="dato.estatusId == '3'"><h4><span class="label label-danger">{{dato.estatus}}</span></h4></td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-horizontal row">
+            <div class="col-sm-12">
+                <ul uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+            </div>
+        </div>      
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">{{titulo}}</div>
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <form id="frmArticulo" name="frmArticulo" class="form-horizontal" role="form" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Descripci&oacuten:</label>
+                            <div class="col-sm-10 has-feedback" ng-class="cssInput(frmArticulo.descripcion)">
+                                <input type="text" autofocus="" id="descripcion" name="descripcion" placeholder="Descripcion" class="form-control" ng-pattern="/^[a-zA-Z0-9\s\. ñáéíóú ÑÁÉÍÓÚ]*$/" ng-maxlength="100" required="" ng-model="articulo.descripcion">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmArticulo.descripcion)"></span>
+                                 <div ng-show="frmArticulo.$submitted || frmArticulo.descripcion.$touched">
+	                                 <span class="error" ng-show="frmArticulo.descripcion.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmArticulo.descripcion.$error.maxlength">El logintud m&aacutexima es de 100 caracteres.</span>
+	                            </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback"  ng-class="cssInput(frmArticulo.modelo)">
+                            <label class="col-sm-2 control-label">Modelo:</label>
+                            <div class="col-sm-5">
+                                <input type="text" id="modelo" name="modelo" placeholder="Modelo" class="form-control" ng-pattern="/^[a-zA-Z0-9\s\. ñáéíóú ÑÁÉÍÓÚ]*$/" ng-maxlength="100" ng-model="articulo.modelo">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmArticulo.modelo)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback"  ng-class="cssInput(frmArticulo.precio)">
+                            <label class="col-sm-2 control-label">Precio:</label>
+                            <div class="col-sm-5">
+                                <input type="text" id="precio" name="precio" placeholder="$" class="form-control" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" ng-maxlength="14" required="" ng-model="articulo.precio">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmArticulo.precio)"></span>
+                                 <div ng-show="frmArticulo.$submitted || frmArticulo.precio.$touched">
+	                                 <span class="error" ng-show="frmArticulo.precio.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmArticulo.precio.$error.maxlength">El logintud m&aacutexima es de 14 caracteres.</span>
+	                                 <span class="error" ng-show="frmArticulo.precio.$error.pattern">Formato Incorrecto.</span>
+	                            </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback"  ng-class="cssInput(frmArticulo.existencia)">
+                            <label class="col-sm-2 control-label">Existencia:</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="existencia" name="existencia" placeholder="existencia" class="form-control" ng-pattern="/^[0-9]{1,5}$/" ng-maxlength="5" required="" ng-model="articulo.existencia">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmArticulo.existencia)"></span>
+                                <div ng-show="frmArticulo.$submitted || frmArticulo.existencia.$touched">
+	                                 <span class="error" ng-show="frmArticulo.existencia.$error.required">Este campo es requerido.</span>
+	                                 <span class="error" ng-show="frmArticulo.existencia.$error.maxlength">El logintud m&aacutexima es de 5 caracteres.</span>
+	                                 <span class="error" ng-show="frmArticulo.existencia.$error.pattern">Formato Incorrecto.</span>
+	                            </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                              
+                <div class="col-sm-offset-9">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" ng-click="guardar(frmArticulo)"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                        <button type="button" class="btn btn-danger" ng-click="regresar()"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</button>                       
+                    </div> 
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="vertical-align-wrap">
+    <div class="vertical-align-middle">
+        <div class="auth-box " style=" margin-top: 75px;">
+            <div class="content">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div class="logo text-center"><img src="images/ang.png" alt="Logo" style="margin-bottom: 20px;" class="img-responsive img-thumbnail"></div>
+                    <form id="frmLogin" name="frmLogin" novalidate>
+                        <div class="form-group has-feedback" ng-class="cssInput(frmLogin.email)">
+                            <label for="email" class="control-label sr-only">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required ng-model="usuario.email">
+                             <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmLogin.email)"></span>
+                        </div>
+                        <div class="form-group has-feedback" ng-class="cssInput(frmLogin.password)">
+                            <label for="password" class="control-label sr-only">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required ng-model="usuario.password">
+                            <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmLogin.password)"></span>
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block" ng-disabled="!frmLogin.$valid" ng-click="login()">ACCESAR <i class="fa fa-chevron-circle-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

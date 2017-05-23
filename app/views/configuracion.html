@@ -1,0 +1,59 @@
+<div class="panel panel-info">
+    <div class="panel-heading"><h5><strong>{{titulo}}</strong></h5></div>
+    <div class="panel-body">
+        <div class="col-sm-12">             
+            <form id="frmConfiguracion" name="frmConfiguracion" class="form-horizontal" role="form" novalidate>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback"  ng-class="cssInput(frmConfiguracion.tasa)">
+                            <label class="col-sm-4 control-label">Tasa Financiamiento:</label>
+                            <div class="col-sm-3">
+                                <input type="text" autofocus="" id="tasa" name="tasa" placeholder="Tasa" class="form-control" ng-pattern="/^[0-9]+(\.[0-9]{1,1})?$/" step="00.01" ng-maxlength="4" required="" ng-model="configuracion.tasa">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmConfiguracion.tasa)"></span>
+                                <div ng-show="frmConfiguracion.$submitted || frmConfiguracion.tasa.$touched">
+                                     <span class="error" ng-show="frmConfiguracion.tasa.$error.required">Este campo es requerido.</span>
+                                     <span class="error" ng-show="frmConfiguracion.tasa.$error.pattern">Formato Incorrecto.</span>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback"  ng-class="cssInput(frmConfiguracion.enganche)">
+                            <label class="col-sm-4 control-label">% Enganche:</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="enganche" name="enganche" placeholder="%" class="form-control" ng-pattern="/^[0-9]+(\.[0-9])?$/" ng-maxlength="2" required="" ng-model="configuracion.enganche">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmConfiguracion.enganche)"></span>
+                                <div ng-show="frmConfiguracion.$submitted || frmConfiguracion.enganche.$touched">
+                                     <span class="error" ng-show="frmConfiguracion.enganche.$error.required">Este campo es requerido.</span>
+                                     <span class="error" ng-show="frmConfiguracion.enganche.$error.pattern">Formato Incorrecto.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback"  ng-class="cssInput(frmConfiguracion.plazoMaximo)">
+                            <label class="col-sm-4 control-label">Plazo M&aacute;ximo:</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="plazoMaximo" name="plazoMaximo" placeholder="Plazo" class="form-control" ng-pattern="/^[0-9]{1,10}$/" ng-maxlength="2" required="" ng-model="configuracion.plazoMaximo">
+                                <span class="glyphicon form-control-feedback" ng-class="cssIcono(frmConfiguracion.plazoMaximo)"></span>
+                                <div ng-show="frmConfiguracion.$submitted || frmConfiguracion.plazoMaximo.$touched">
+                                     <span class="error" ng-show="frmConfiguracion.plazoMaximo.$error.required">Este campo es requerido.</span>
+                                     <span class="error" ng-show="frmConfiguracion.plazoMaximo.$error.pattern">Formato Incorrecto.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                              
+                <div class="col-sm-offset-9">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success" ng-click="guardar(frmConfiguracion)"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>                                          
+                    </div> 
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
